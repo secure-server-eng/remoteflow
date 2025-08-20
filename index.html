@@ -466,9 +466,72 @@
     padding: 3px 6px;
   }
 }
+.social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 40px;
+}
 
+.city-times {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  text-align: center;
+  flex-wrap: wrap;
+}
 
+.city {
+  width: 140px;
+}
 
+.flag-img {
+  width: 32px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+.city h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #007bff;
+}
+
+.zone {
+  font-size: 14px;
+  color: #fff;
+  margin: 4px 0;
+}
+
+.clock {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+.city-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.flag-inline {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.city-label h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #007bff;
+}
 
 
     /* Footer */
@@ -500,7 +563,7 @@
       <div class="logo">
   <img src="logo.png" alt="RemoteFlow Agency Logo">
 </div>
-       
+       <a href="#" class="nav-link">Home</a>
       </div>
       <nav aria-label="Main navigation">
         <a href="#services">Services</a>
@@ -1093,10 +1156,40 @@
     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
       <svg width="20" height="20" fill="#0A66C2" viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-9 14v-6H8v6h2zm-1-7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm8 7v-3.5c0-2-1-3-2.5-3a2.3 2.3 0 0 0-2.1 1h-.1V11h-2v6h2v-3.3c0-.8.6-1.7 1.5-1.7s1.5.7 1.5 1.6V17h2z"/></svg>
     </a>
+	<div class="city-times">
+  <div class="city">
+    <div class="city-label">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Kenya.svg" alt="Kenya Flag" class="flag-inline">
+  <h3>Nairobi</h3>
+</div>
+    <p class="zone">EAT</p>
+    <p class="clock" id="nairobi-time">--:--:--</p>
+  </div>
+  <div class="city">
+    <div class="city-label">
+  <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK Flag" class="flag-inline">
+  <h3>London</h3>
+</div>
+
+    <p class="zone">BST</p>
+    <p class="clock" id="london-time">--:--:--</p>
+  </div>
+  <div class="city">
+    <div class="city-label">
+  <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA Flag" class="flag-inline">
+  <h3>New York</h3>
+</div>
+
+    <p class="zone">EDT</p>
+    <p class="clock" id="newyork-time">--:--:--</p>
+  </div>
+</div>
+
   </div>
 </div>
   <div style="height:10px"></div>
-  <p class="sub">Nairobi • London • New York</p>
+ 
+
 </div>
 
       </div>
@@ -1157,6 +1250,20 @@
       });
     });
   });
+  function updateClocks() {
+  const now = new Date();
+
+  const nairobi = new Date(now.toLocaleString("en-US", { timeZone: "Africa/Nairobi" }));
+  const london = new Date(now.toLocaleString("en-US", { timeZone: "Europe/London" }));
+  const newyork = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+
+  document.getElementById("nairobi-time").textContent = nairobi.toLocaleTimeString();
+  document.getElementById("london-time").textContent = london.toLocaleTimeString();
+  document.getElementById("newyork-time").textContent = newyork.toLocaleTimeString();
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
 </script>
 
     document.getElementById('year').textContent = new Date().getFullYear();
