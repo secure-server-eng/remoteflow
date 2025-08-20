@@ -304,6 +304,172 @@
   transform: scale(1.2);
   opacity: 0.8;
 }
+@keyframes typewriter {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--brand);
+  font-weight: normal;
+   font-size: 0.8em;
+  animation: typewriter 0.6s ease-out;
+}
+#pricing {
+  background: #000;
+  padding: 64px 0;
+}
+
+.pricing-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.pricing-card {
+  background: #fff;
+  color: #000;
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid #333;
+}
+
+.pricing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pricing-icon {
+  width: 28px;
+  height: 28px;
+  stroke: #3399ff;
+}
+
+.toggle {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.toggle label {
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eee;
+  border: 1px solid #ccc;
+  color: #000; /* ← added: sets default font color to black */
+}
+
+.toggle input[type="radio"] {
+  display: none;
+}
+
+.toggle input[type="radio"]:checked + label {
+  background: #3399ff;
+  color: #000; /* ← changed: keeps selected label font black */
+  border-color: #000;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.price-tier {
+  position: relative;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.price-tier:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3); /* brand blue shadow */
+}
+
+
+.price-tier strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #000;
+}
+
+.price-tier p {
+  font-size: 20px;
+  margin: 0;
+  color: #007bff;
+}
+
+.price-tier .sub {
+  font-size: 13px;
+  margin-top: 4px;
+  color: #333;
+}
+
+.price-tier.popular {
+  border: 2px solid #007bff;
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #007bff;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+/* =========================
+   Responsive Enhancements
+========================== */
+@media (max-width: 1024px) {
+  .pricing-tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .toggle {
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    top: 6px;
+    right: 6px;
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+
+
+
 
     /* Footer */
     footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
@@ -334,11 +500,12 @@
       <div class="logo">
   <img src="logo.png" alt="RemoteFlow Agency Logo">
 </div>
-        <span>RemoteFlow Agency</span>
+       
       </div>
       <nav aria-label="Main navigation">
         <a href="#services">Services</a>
         <a href="#process">How it works</a>
+		<a href="#pricing">Pricing</a>
         <a href="#team">Team</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
@@ -355,7 +522,12 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           24/7 Support • Scale in days
         </span>
-        <h1>Vetted virtual assistants that feel <em>in‑house</em>.</h1>
+		<h1 style="color: #007bff;">RemoteFlow Agency</h1>
+        <h1>
+  Vetted virtual assistants that feels
+   <h1>
+  <em id="typewriter">in‑house</em>.
+</h1>
         <p>Delegate scheduling, inbox, reception, social media and more to trusted remote professionals. Flexible terms, transparent prices, measurable outcomes.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#contact">Get started</a>
@@ -404,7 +576,7 @@
         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
       </svg>
     </div>
-    <b>4.9★</b><br><span class="sub">Avg. rating</span>
+    <b>4.9</b><br><span class="sub">Avg. rating</span>
   </div>
 </div>
 
@@ -602,7 +774,132 @@
     </div>
   </div>
 </section>
+<section id="pricing" style="background:#000;">
+  <div class="container">
+    <div class="section-title">
+      <h2 style="color:#fff;">Pricing Plans</h2>
+      <span class="sub" style="color:#ccc;">Flexible options for every team size and workflow.</span>
+    </div>
+    <div class="grid pricing-tiles">
 
+      <!-- Virtual Assistants -->
+      <div class="card pricing-card">
+        <div class="pricing-header">
+          <svg class="pricing-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="4" stroke="#3399ff" stroke-width="2"/><path d="M4 21c0-4 3-7 8-7s8 3 8 7" stroke="#3399ff" stroke-width="2"/></svg>
+          <h3>Virtual Assistants</h3>
+          <div class="toggle">
+            <label><input type="radio" name="va" value="monthly" checked>Monthly</label>
+            <label><input type="radio" name="va" value="annual">Annual</label>
+          </div>
+        </div>
+        <div class="grid pricing-grid">
+          <div class="price-tier"><strong>Basic</strong><p class="price" data-monthly="299" data-annual="239">$299/mo</p><span class="sub">Up to 20 hours</span></div>
+          <div class="price-tier popular"><strong>Pro</strong><p class="price" data-monthly="499" data-annual="399">$499/mo</p><span class="sub">Up to 40 hours</span><span class="badge">Most Popular</span></div>
+          <div class="price-tier"><strong>Premium</strong><p class="price" data-monthly="799" data-annual="639">$799/mo</p><span class="sub">Unlimited hours</span></div>
+        </div>
+      </div>
+<!-- Virtual Receptionists -->
+<div class="card pricing-card">
+  <div class="pricing-header">
+    <svg class="pricing-icon" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="14" rx="3" stroke="#3399ff" stroke-width="2"/>
+      <path d="M7 20h10" stroke="#3399ff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h3>Virtual Receptionists</h3>
+    <div class="toggle">
+      <label><input type="radio" name="vr" value="monthly" checked>Monthly</label>
+      <label><input type="radio" name="vr" value="annual">Annual</label>
+    </div>
+  </div>
+  <div class="grid pricing-grid">
+    <div class="price-tier"><strong>Basic</strong><p class="price" data-monthly="199" data-annual="159">$199/mo</p><span class="sub">Weekday coverage</span></div>
+    <div class="price-tier popular"><strong>Pro</strong><p class="price" data-monthly="399" data-annual="319">$399/mo</p><span class="sub">Full week</span><span class="badge">Most Popular</span></div>
+    <div class="price-tier"><strong>Premium</strong><p class="price" data-monthly="599" data-annual="479">$599/mo</p><span class="sub">24/7 coverage</span></div>
+  </div>
+</div>
+
+<!-- Scheduling -->
+<div class="card pricing-card">
+  <div class="pricing-header">
+    <svg class="pricing-icon" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="9" stroke="#3399ff" stroke-width="2"/>
+      <path d="M12 7v5l4 2" stroke="#3399ff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <h3>Scheduling</h3>
+    <div class="toggle">
+      <label><input type="radio" name="sched" value="monthly" checked>Monthly</label>
+      <label><input type="radio" name="sched" value="annual">Annual</label>
+    </div>
+  </div>
+  <div class="grid pricing-grid">
+    <div class="price-tier"><strong>Basic</strong><p class="price" data-monthly="149" data-annual="119">$149/mo</p><span class="sub">One calendar</span></div>
+    <div class="price-tier popular"><strong>Pro</strong><p class="price" data-monthly="299" data-annual="239">$299/mo</p><span class="sub">Multiple calendars</span><span class="badge">Most Popular</span></div>
+    <div class="price-tier"><strong>Premium</strong><p class="price" data-monthly="499" data-annual="399">$499/mo</p><span class="sub">Team coordination</span></div>
+  </div>
+</div>
+
+<!-- Email Handling -->
+<div class="card pricing-card">
+  <div class="pricing-header">
+    <svg class="pricing-icon" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="5" width="18" height="14" rx="2" stroke="#3399ff" stroke-width="2"/>
+      <path d="M3 7l9 6 9-6" stroke="#3399ff" stroke-width="2"/>
+    </svg>
+    <h3>Email Handling</h3>
+    <div class="toggle">
+      <label><input type="radio" name="email" value="monthly" checked>Monthly</label>
+      <label><input type="radio" name="email" value="annual">Annual</label>
+    </div>
+  </div>
+  <div class="grid pricing-grid">
+    <div class="price-tier"><strong>Basic</strong><p class="price" data-monthly="179" data-annual="139">$179/mo</p><span class="sub">Inbox triage</span></div>
+    <div class="price-tier popular"><strong>Pro</strong><p class="price" data-monthly="349" data-annual="279">$349/mo</p><span class="sub">Inbox + reports</span><span class="badge">Most Popular</span></div>
+    <div class="price-tier"><strong>Premium</strong><p class="price" data-monthly="549" data-annual="439">$549/mo</p><span class="sub">Full email ownership</span></div>
+  </div>
+</div>
+
+<!-- Marketing -->
+<div class="card pricing-card">
+  <div class="pricing-header">
+    <svg class="pricing-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M4 12l16-6-4 12-12-6z" stroke="#3399ff" stroke-width="2"/>
+      <circle cx="12" cy="12" r="10" stroke="#3399ff" stroke-width="2"/>
+    </svg>
+    <h3>Marketing</h3>
+    <div class="toggle">
+      <label><input type="radio" name="mkt" value="monthly" checked>Monthly</label>
+      <label><input type="radio" name="mkt" value="annual">Annual</label>
+    </div>
+  </div>
+  <div class="grid pricing-grid">
+    <div class="price-tier"><strong>Basic</strong><p class="price" data-monthly="249" data-annual="199">$249/mo</p><span class="sub">2 posts/week</span></div>
+    <div class="price-tier popular"><strong>Pro</strong><p class="price" data-monthly="449" data-annual="359">$449/mo</p><span class="sub">Daily posts</span><span class="badge">Most Popular</span></div>
+    <div class="price-tier"><strong>Premium</strong><p class="price" data-monthly="699" data-annual="559">$699/mo</p><span class="sub">Full campaign support</span></div>
+  </div>
+</div>
+
+<!-- Custom Solutions -->
+<div class="card pricing-card">
+  <div class="pricing-header">
+    <svg class="pricing-icon" viewBox="0 0 24 24" fill="none">
+      <path d="M12 5v14M5 12h14" stroke="#3399ff" stroke-width="2"/>
+    </svg>
+    <h3>Custom Solutions</h3>
+    <div class="toggle">
+      <label><input type="radio" name="custom" value="monthly" checked>Monthly</label>
+      <label><input type="radio" name="custom" value="annual">Annual</label>
+    </div>
+  </div>
+  <div class="grid pricing-grid">
+    <div class="price-tier"><strong>Basic</strong><p class="price" data-monthly="399" data-annual="319">$399/mo</p><span class="sub">1 dashboard</span></div>
+    <div class="price-tier popular"><strong>Pro</strong><p class="price" data-monthly="699" data-annual="559">$699/mo</p><span class="sub">Multiple dashboards</span><span class="badge">Most Popular</span></div>
+    <div class="price-tier"><strong>Premium</strong><p class="price" data-monthly="999" data-annual="799">$999/mo</p><span class="sub">Custom KPIs & SOPs</span></div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
 
   <!-- ===== TEAM ===== -->
   <section id="team">
@@ -818,6 +1115,50 @@
 
   <script>
     // Minimal JS: update footer year only.
+	const phrases = [
+  "like part of your team",
+  "effortless",
+  "tailored to you",
+  "truly seamless",
+  "just right",
+  "like they belong",
+  "built around you",
+  "like second nature",
+  "instantly familiar",
+  "always there"
+]
+
+;
+  const el = document.getElementById("typewriter");
+  let index = 0;
+
+  function updateTypewriter(text) {
+    el.textContent = text;
+    el.style.animation = "none";
+    void el.offsetWidth; // trigger reflow
+    el.style.animation = "typewriter 0.6s ease-out";
+  }
+
+  setInterval(() => {
+    index = (index + 1) % phrases.length;
+    updateTypewriter(phrases[index]);
+  }, 3000);
+  document.querySelectorAll('.pricing-card').forEach(card => {
+    const radios = card.querySelectorAll('input[type="radio"]');
+    const prices = card.querySelectorAll('.price');
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        const billing = card.querySelector('input[type="radio"]:checked').value;
+        prices.forEach(price => {
+          const value = price.dataset[billing];
+          price.textContent = `$${value}/${billing === 'monthly' ? 'mo' : 'yr'}`;
+        });
+      });
+    });
+  });
+</script>
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
