@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RemoteFlow Agency — Virtual Assistants for Growing Teams</title>
+  <meta name="description" content="Hire vetted remote assistants for scheduling, email management, reception, marketing and more — affordable, flexible, and 24/7." />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       THEME & RESET
+    ========================== */
+    :root{
+      --bg: #ffffff;            /* white background */
+      --panel: #f0f0f0;         /* gray cards */
+      --panel-2: #e0e0e0;       /* subtle contrast gray */
+      --text: #ffffff;          /* body font white */
+      --heading: #0056b3;       /* heading blue */
+      --muted: #dcdcdc;         /* muted gray */
+      --brand: #007bff;         /* primary blue */
+      --brand-2: #3399ff;       /* lighter blue */
+      --ring: rgba(0, 123, 255, .45);
+      --shadow: 0 6px 18px rgba(0, 0, 0, .15);
+      --radius: 18px;
+      --radius-sm: 14px;
+      --radius-lg: 26px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(111,124,255,.25), transparent 60%),
+                  radial-gradient(900px 700px at 100% 10%, rgba(109,220,255,.18), transparent 50%),
+                  linear-gradient(180deg, #070a17 0%, #0b1020 40%);
+      min-height: 100vh;
+      letter-spacing: .2px;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Layout helpers */
+    .container{width:min(1120px, 92%);margin-inline:auto}
+    .grid{display:grid;gap:20px}
+    .btn{display:inline-block;padding:14px 20px;border-radius:calc(var(--radius)-6px);font-weight:600}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#020411;box-shadow:0 6px 18px rgba(125,140,255,.35)}
+    .btn-ghost{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.02);backdrop-filter: blur(8px)}
+    .pill{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:12px;color:var(--muted);background:rgba(255,255,255,.03)}
+    .pill svg{opacity:.9}
+
+    /* Header / Nav */
+    header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.6) 60%, transparent);backdrop-filter: blur(8px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
+    .logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px; /* breathing space around the logo */
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  box-shadow: 0 6px 18px rgba(125, 140, 255, .35);
+}
+
+.logo img {
+  height: 30px;   /* control logo size */
+  width: auto;    /* keep aspect ratio */
+  display: block;
+}
+
+    nav a{opacity:.82;padding:10px 12px;border-radius:12px}
+    nav a:hover{opacity:1;background:rgba(255,255,255,.05)}
+
+   /* Hero */
+.hero {
+  padding: 80px 0 40px;
+}
+
+.hero-inner {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+  grid-template-columns: 1.2fr .8fr;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.hero p {
+  font-size: clamp(16px, 2.2vw, 18px);
+  color: var(--muted);
+  margin: 0;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.stat {
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column; /* icon on top, number below */
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--brand); /* blue color for icons */
+}
+
+.stat b {
+  font-size: 20px;
+}
+
+.hero-card {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+    /* Section wrappers */
+    section{padding:64px 0}
+    .section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+    .section-title h2{margin:0;font-size:clamp(22px, 4vw, 32px)}
+    .sub{color:var(--muted);font-size:14px}
+
+   /* Services */
+.services { grid-template-columns: repeat(3, 1fr); }
+
+.card {
+  padding: 22px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.1);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(18,34,78,.45);
+}
+
+.card h3 {
+  margin: 8px 0 6px;
+  font-size: 18px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(109,220,255,.2), rgba(127,124,255,.2));
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+/* Make all SVG icons inside .icon blue */
+.icon svg {
+  color: var(--brand); /* uses your brand blue */
+  stroke: currentColor;
+}
+
+    /* Process */
+    .process{grid-template-columns:repeat(4,1fr)}
+    .step{position:relative}
+    .step .num{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#020411;font-weight:800;font-size:13px}
+
+    /* Team */
+.team {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.member {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+}
+
+.avatar {
+  width: 120px;               /* larger, passport size */
+  height: 120px;
+  border-radius: 50%;          /* makes it circular */
+  object-fit: cover;           /* keeps proportions */
+  box-shadow: 0 8px 20px rgba(125,140,255,.35);
+  margin-bottom: 1rem;
+  border: 3px solid rgba(255,255,255,.3); /* subtle border */
+}
+
+.role {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.process {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.step {
+  padding: 18px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  color: var(--brand); /* blue icons */
+}
+
+.step h3 {
+  margin: 8px 0 6px;
+  font-size: 18px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+    /* Testimonials */
+    .testimonials{grid-template-columns:repeat(3,1fr)}
+    .quote{padding:22px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);position:relative}
+    .quote::before{content:"\201C";position:absolute;left:14px;top:-8px;font-size:52px;opacity:.2}
+
+    /* Contact */
+    form{display:grid;gap:14px}
+    label{font-size:14px;color:var(--muted)}
+    input, textarea{width:100%;padding:14px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);color:var(--text);outline:none}
+    input:focus, textarea:focus{border-color:var(--ring);box-shadow:0 0 0 6px rgba(127,124,255,.08)}
+    textarea{min-height:120px;resize:vertical}
+.contact-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  color: var(--brand); /* theme blue */
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+.contact-icon:hover {
+  transform: translateY(-2px);
+}
+.contact-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+.social-links {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a svg {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links a:hover svg {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-inner{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .process{grid-template-columns:repeat(2,1fr)}
+      .team{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      nav{display:none}
+      .services{grid-template-columns:1fr}
+      .process{grid-template-columns:1fr}
+      .team{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="RemoteFlow Agency">
+      <div class="logo">
+  <img src="logo.png" alt="RemoteFlow Agency Logo">
+</div>
+        <span>RemoteFlow Agency</span>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#team">Team</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="pill">
+          <!-- clock icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          24/7 Support • Scale in days
+        </span>
+        <h1>Vetted virtual assistants that feel <em>in‑house</em>.</h1>
+        <p>Delegate scheduling, inbox, reception, social media and more to trusted remote professionals. Flexible terms, transparent prices, measurable outcomes.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Get started</a>
+        </div>
+        <div class="stats">
+  <div class="stat">
+    <div class="stat-icon">
+      <!-- Smiling face icon for client satisfaction -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="9" cy="10" r="1" fill="currentColor"/>
+        <circle cx="15" cy="10" r="1" fill="currentColor"/>
+      </svg>
+    </div>
+    <b>99%</b><br><span class="sub">Client satisfaction</span>
+  </div>
+
+  <div class="stat">
+    <div class="stat-icon">
+      <!-- Globe icon for global coverage -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+        <path d="M2 12h20M12 2v20M4 4l16 16M4 20L20 4" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+    <b>24/7</b><br><span class="sub">Global coverage</span>
+  </div>
+
+  <div class="stat">
+    <div class="stat-icon">
+      <!-- People icon for active assistants -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="16" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
+        <path d="M2 20c0-4 4-6 6-6h4c2 0 6 2 6 6" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+    <b>+120</b><br><span class="sub">Active assistants</span>
+  </div>
+
+  <div class="stat">
+    <div class="stat-icon">
+      <!-- Star icon for avg. rating -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+      </svg>
+    </div>
+    <b>4.9★</b><br><span class="sub">Avg. rating</span>
+  </div>
+</div>
+
+      </div>
+      <div class="hero-card" aria-label="Highlights">
+  <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
+    
+    <!-- Inbox -->
+    <div class="card">
+      <div class="icon" aria-hidden="true">
+        <!-- Blue Inbox Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8m16 0h-4a4 4 0 0 1-8 0H4m16 0v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6" />
+        </svg>
+      </div>
+      <h3>Inbox & Calendar</h3>
+      <p>Zero-inbox workflows, smart routing, and calendar ownership.</p>
+    </div>
+
+    <!-- CRM -->
+    <div class="card">
+      <div class="icon" aria-hidden="true">
+        <!-- Blue CRM Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4a4 4 0 0 0 0 8Zm0 0c-4.418 0-8 2.239-8 5v3h16v-3c0-2.761-3.582-5-8-5Z" />
+        </svg>
+      </div>
+      <h3>Reception & CRM</h3>
+      <p>Friendly first response, accurate notes, instant CRM updates.</p>
+    </div>
+
+    <!-- Marketing -->
+    <div class="card">
+      <div class="icon" aria-hidden="true">
+        <!-- Blue Marketing Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v3m6.364 1.636-2.121 2.121M21 12h-3M17.364 17.364l-2.121-2.121M12 21v-3M6.636 17.364l2.121-2.121M3 12h3M6.636 6.636l2.121 2.121" />
+        </svg>
+      </div>
+      <h3>Marketing Support</h3>
+      <p>Asset prep, social scheduling, light design, and reporting.</p>
+    </div>
+
+    <!-- Playbooks -->
+    <div class="card">
+      <div class="icon" aria-hidden="true">
+        <!-- Blue Document/Playbook Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10M7 12h6m-2 5h8M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+        </svg>
+      </div>
+      <h3>Custom Playbooks</h3>
+      <p>Documented SOPs for repeatable quality at scale.</p>
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Services</h2>
+      <span class="sub">Pick a plan or mix & match. We plug into your tools.</span>
+    </div>
+    <div class="grid services">
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <!-- Assistant -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 21c0-4 3-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Virtual Assistants</h3>
+        <p>General admin, research, docs, travel, vendor coordination, and more.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <!-- Reception -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 20h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Virtual Receptionists</h3>
+        <p>Answer calls, route tickets, greet visitors, and capture detailed notes.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <!-- Clock -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 7v5l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Scheduling</h3>
+        <p>Calendar ownership, meeting prep, reminders, and timezone coordination.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <!-- Mail -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Email Handling</h3>
+        <p>Inbox rules, triage, canned responses, and weekly reporting.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <!-- Marketing -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 12l16-6-4 12-12-6z" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Marketing</h3>
+        <p>Social scheduling, light design, newsletter sends, and asset updates.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon" aria-hidden="true">
+          <!-- Plus -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Custom Solutions</h3>
+        <p>We tailor SOPs & dashboards around your stack and KPIs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="container">
+    <div class="section-title">
+      <h2>How it works</h2>
+      <span class="sub">From discovery to measurable outcomes in under a week.</span>
+    </div>
+    <div class="grid process">
+      <div class="card step">
+        <div class="step-icon" aria-hidden="true">
+          <!-- Magnifying glass for Discovery -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <h3>Discovery</h3>
+        <p>We map your workflows and define success metrics and guardrails.</p>
+      </div>
+      <div class="card step">
+        <div class="step-icon" aria-hidden="true">
+          <!-- Handshake for Match -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12h6M14 12h6M8 12l2 4 4-4 4 4"/>
+          </svg>
+        </div>
+        <h3>Match</h3>
+        <p>We shortlist vetted assistants with domain experience and references.</p>
+      </div>
+      <div class="card step">
+        <div class="step-icon" aria-hidden="true">
+          <!-- Clipboard for Onboard -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="2" width="8" height="4" rx="1"/>
+            <path d="M6 6h12v16H6z"/>
+          </svg>
+        </div>
+        <h3>Onboard</h3>
+        <p>We set up access, SOPs, and reporting. You meet your assistant.</p>
+      </div>
+      <div class="card step">
+        <div class="step-icon" aria-hidden="true">
+          <!-- Graph / Arrow for Improve -->
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 17 9 11 13 15 21 7"/>
+          </svg>
+        </div>
+        <h3>Improve</h3>
+        <p>Weekly check‑ins and dashboards keep quality rising and costs stable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ===== TEAM ===== -->
+  <section id="team">
+    <div class="container">
+      <div class="section-title">
+        <h2>Meet our Team</h2>
+        <span class="sub">Full‑time, part‑time, and on‑demand support across timezones.</span>
+      </div>
+     <div class="grid team">
+	 <div class="member">
+    <img src="images/rahab.jpg" alt="Anne Nyambura" class="avatar">
+    <h3>Rahab Kimani</h3>
+    <div class="role">Founder & C.E.O</div>
+  </div>
+  <div class="member">
+    <img src="images/ann.jpg" alt="Anne Nyambura" class="avatar">
+    <h3>Anne Nyambura</h3>
+    <div class="role">Virtual Assistant</div>
+  </div>
+  <div class="member">
+    <img src="images/george.jpg" alt="George Achola" class="avatar">
+    <h3>George Achola</h3>
+    <div class="role">Virtual Assistant</div>
+  </div>
+  <!--<div class="member">
+    <img src="images/brian.jpg" alt="Brian Kosgei" class="avatar">
+    <h3>Brian Kosgei</h3>
+    <div class="role">I.T & Marketing</div>
+  </div>--->
+  <div class="member">
+    <img src="images/geriatric.jpg" alt="Grace Chen" class="avatar">
+    <h3>Geriatric Advisory Council</h3>
+    <div class="role">Member</div>
+  </div>
+  
+</div>
+
+    </div>
+	
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What clients say</h2>
+        <span class="sub">Outcomes, not busywork.</span>
+      </div>
+      <div class="grid testimonials">
+        <div class="quote">
+          <p>“RemoteFlow took over our inbox and scheduling within days. We went from reactive to proactive.”</p>
+          <div class="role">— David, Operations Lead</div>
+        </div>
+        <div class="quote">
+          <p>“Processes run smoother and productivity is up. The assistants feel like part of the team.”</p>
+          <div class="role">— Chris, Executive Director</div>
+        </div>
+        <div class="quote">
+          <p>“Clear reporting and great attitude. We scaled support without sacrificing quality.”</p>
+          <div class="role">— Salma, Founder</div>
+        </div>
+      </div>
+    </div>
+	<div class="container">
+  <div class="section-title">
+    <span class="sub"></span>
+  </div>
+  <div class="grid testimonials">
+    <div class="quote">
+      <p>“The RemoteFlow team streamlined our client onboarding. What used to take weeks now happens in days.”</p>
+      <div class="role">— Angela, Project Manager</div>
+    </div>
+    <div class="quote">
+      <p>“I can focus on growth while routine admin is handled flawlessly. A game-changer for my business.”</p>
+      <div class="role">— Mark, Startup Founder</div>
+    </div>
+    <div class="quote">
+      <p>“Dependable, responsive, and efficient. It feels like having an in-house team without the overhead.”</p>
+      <div class="role">— Sophia, Operations Director</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-title">
+    <span class="sub"></span>
+  </div>
+  <div class="grid testimonials">
+    <div class="quote">
+      <p>“RemoteFlow keeps our schedules running like clockwork. Their attention to detail is unmatched.”</p>
+      <div class="role">— James, HR Coordinator</div>
+    </div>
+    <div class="quote">
+      <p>“The assistants picked up our systems fast and now anticipate needs before we even ask.”</p>
+      <div class="role">— Priya, COO</div>
+    </div>
+    <div class="quote">
+      <p>“They’ve saved us countless hours each week. Professional, reliable, and always proactive.”</p>
+      <div class="role">— Leo, Managing Partner</div>
+    </div>
+  </div>
+</div>
+
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Get Service Quote</h2>
+        <span class="sub">Tell us what you need help with. We’ll reply promptly.</span>
+      </div>
+      <div class="grid" style="grid-template-columns:1.1fr .9fr">
+        <form aria-label="Contact form" onsubmit="event.preventDefault(); alert('Request Submitted Successfully.');">
+  <div>
+    <label for="name">Full name</label>
+    <input id="name" name="name" type="text" placeholder="Full name" required>
+  </div>
+  <div>
+    <label for="email">Work email</label>
+    <input id="email" name="email" type="email" placeholder="[email protected]" required>
+  </div>
+  <div>
+    <label for="company">Company</label>
+    <input id="company" name="company" type="text" placeholder="Company Inc.">
+  </div>
+  <div>
+    <label for="service">Service of interest</label>
+    <select id="service" name="service" required>
+      <option value="" disabled selected>Select a service</option>
+      <option value="virtual-assistants">Virtual Assistants</option>
+      <option value="virtual-receptionists">Virtual Receptionists</option>
+      <option value="scheduling">Scheduling</option>
+      <option value="email-handling">Email Handling</option>
+      <option value="marketing">Marketing</option>
+      <option value="custom-solutions">Custom Solutions</option>
+    </select>
+  </div>
+  <div>
+    <label for="message">What can we take off your plate?</label>
+    <textarea id="message" name="message" placeholder="Describe your needs…"></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit Request</button>
+</form>
+
+
+        <div class="card" role="contentinfo">
+  <h3>Contact Details</h3>
+  <div style="height:10px"></div>
+
+  <p>
+    <span class="contact-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16v16H4z"/>
+        <path d="M22,6 L12,13 L2,6"/>
+      </svg>
+    </span>
+    <b>Email:</b> hello@yourdomain.com
+  </p>
+
+  <p>
+    <span class="contact-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72 12.05 12.05 0 0 0 .57 2.57 2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.06 6.06l1.27-1.27a2 2 0 0 1 2.11-.45 12.05 12.05 0 0 0 2.57.57A2 2 0 0 1 22 16.92z"/>
+      </svg>
+    </span>
+    <b>Phone:</b> +1 (000) 000‑0000
+  </p>
+
+  <p>
+    <span class="contact-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+    </span>
+    <b>Hours:</b> 24/7 for plans with reception; 9–6 for standard plans
+  </p>
+  <!-- Social media links -->
+  <h3>Connect With Us</h3>
+  <div class="social-links">
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+      <svg width="20" height="20" fill="#1877F2" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12"/></svg>
+    </a>
+    <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp">
+      <svg width="20" height="20" fill="#25D366" viewBox="0 0 24 24"><path d="M20 3.9A10.8 10.8 0 0 0 12.1 2C6.5 2 2 6.5 2 12.1c0 2 .6 3.9 1.7 5.5L2 22l4.6-1.5A10 10 0 0 0 12 22c5.5 0 10-4.5 10-10 0-2.7-1-5.3-2.8-7.1zM12 20a8 8 0 0 1-4.2-1.2l-.3-.2-2.7.9.9-2.6-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.2-.6-1.4-.6s-.3-.1-.5.2-.6.7-.7.9-.3.1-.5 0a6.4 6.4 0 0 1-1.9-1.2 7 7 0 0 1-1.3-1.7c-.1-.2 0-.3.1-.5l.4-.5.2-.4c.1-.2 0-.3 0-.5l-.6-1.5c-.1-.2-.3-.5-.6-.5h-.5c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.1 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.2-.5 1.4-1s.2-1 .1-1.1-.2-.2-.5-.3z"/></svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+      <svg width="20" height="20" fill="#E1306C" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.6 0 3 1.4 3 3v10c0 1.6-1.4 3-3 3H7c-1.6 0-3-1.4-3-3V7c0-1.6 1.4-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.8-2.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/></svg>
+    </a>
+    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+      <svg width="20" height="20" fill="#0A66C2" viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-9 14v-6H8v6h2zm-1-7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm8 7v-3.5c0-2-1-3-2.5-3a2.3 2.3 0 0 0-2.1 1h-.1V11h-2v6h2v-3.3c0-.8.6-1.7 1.5-1.7s1.5.7 1.5 1.6V17h2z"/></svg>
+    </a>
+  </div>
+</div>
+  <div style="height:10px"></div>
+  <p class="sub">Nairobi • London • New York</p>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div class="brand">
+        <span>RemoteFlow Agency</span>
+      </div>
+      <div class="sub">© <span id="year"></span> RemoteFlow Agency. All rights reserved. Brought to Life by Kosgei</div>
+    </div>
+  </footer>
+
+  <script>
+    // Minimal JS: update footer year only.
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

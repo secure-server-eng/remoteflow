@@ -1,0 +1,155 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.logo span {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #0a66c2; /* Google/LinkedIn blue */
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #0a66c2;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0057a3;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #0a66c2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Tiles */
+/* Tiles - one per row */
+.tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg, #f9f9f9, #f1f1f1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.tile img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tile h2 {
+  margin: 15px 20px 10px;
+  font-size: 1.6rem;
+  color: #0a66c2;
+}
+
+.tile p {
+  margin: 0 20px 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+
+.tile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.tile img {
+  width: 100%;
+  display: block;
+}
+
+.tile h2 {
+  margin: 15px;
+  font-size: 1.5rem;
+  color: #0a66c2;
+}
+
+.tile p {
+  margin: 0 15px 20px 15px;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #fafafa;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 40px;
+}
