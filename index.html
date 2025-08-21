@@ -1094,17 +1094,20 @@
         <span class="sub">Tell us what you need help with. We’ll reply promptly.</span>
       </div>
       <div class="grid" style="grid-template-columns:1.1fr .9fr">
-        <form action="https://api.web3forms.com/submit" method="POST">
-  <div>
-	 <input type="hidden" name="from_name" value="Service Quote Request">
-  <input type="hidden" name="subject" value="New Service Quote">
+       <form id="quoteForm">
+  <!-- Hidden Config -->
   <input type="hidden" name="access_key" value="54c30926-9af0-4819-a406-65f4c3811fa2">
+  <input type="hidden" name="from_name" value="Service Quote Request">
+  <input type="hidden" name="subject" value="New Service Quote">
+
+  <!-- Visible Fields -->
+  <div>
     <label for="name">Full name</label>
     <input id="name" name="name" type="text" placeholder="Full name" required>
   </div>
   <div>
     <label for="email">Work email</label>
-    <input id="email" name="email" type="email" placeholder="[email protected]" required>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required>
   </div>
   <div>
     <label for="company">Company</label>
@@ -1301,6 +1304,25 @@
 
 setInterval(updateClocks, 1000);
 updateClocks();
+ const form = document.getElementById("quoteForm");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    if (response.ok) {
+      alert("Request submitted successfully!");
+      form.reset(); // Clears all fields
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  });
 </script>
 
     document.getElementById('year').textContent = new Date().getFullYear();
