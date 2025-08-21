@@ -1268,23 +1268,10 @@
 
 setInterval(updateClocks, 1000);
 updateClocks();
-document.querySelector("form").addEventListener("submit", async function(e) {
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const form = e.target;
-  if (!form.checkValidity()) return;
-
-  // Show splash
-  const splash = document.getElementById("splash-message");
-  splash.style.display = "block";
-
-  setTimeout(() => {
-    splash.style.display = "none";
-    submitFormData(form);
-  }, 3000);
-});
-
-async function submitFormData(form) {
   const data = {
     name: form.name.value,
     email: form.email.value,
@@ -1293,13 +1280,14 @@ async function submitFormData(form) {
     message: form.message.value
   };
 
-  // Send to backend (see next section)
   await fetch("/submit-request", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
-}
+
+  alert("Request Submitted Successfully.");
+});
 </script>
 
     document.getElementById('year').textContent = new Date().getFullYear();
