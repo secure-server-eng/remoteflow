@@ -1095,14 +1095,44 @@
       </div>
       <div class="grid" style="grid-template-columns:1.1fr .9fr">
         <form action="https://api.web3forms.com/submit" method="POST">
-  <div>
+  <!-- Web3Forms Configuration -->
   <input type="hidden" name="access_key" value="54c30926-9af0-4819-a406-65f4c3811fa2">
+  <input type="hidden" name="from_name" value="Service Quote Request">
+  <input type="hidden" name="subject" value="New Service Quote from {{name}}">
+  <input type="hidden" name="replyto" value="{{email}}">
+  <input type="hidden" name="redirect" value="https://yourdomain.com/thank-you">
+
+  <!-- Premium Styled Email -->
+  <input type="hidden" name="html" value="
+    <div style='font-family:Inter,Helvetica,sans-serif; background:#f9f9f9; padding:40px; border-radius:12px; max-width:600px; margin:auto;'>
+      <div style='text-align:center; margin-bottom:30px;'>
+        <img src='https://via.placeholder.com/150x50?text=Your+Logo' alt='Company Logo' style='width:150px;'>
+        <h2 style='margin:20px 0 10px; font-size:24px; color:#0078D4;'>Service Quote Request</h2>
+        <p style='color:#555; font-size:14px;'>A new request has been submitted via your website.</p>
+      </div>
+      <div style='background:white; padding:20px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.05);'>
+        <p><strong>Full Name:</strong> {{name}}</p>
+        <p><strong>Email:</strong> {{email}}</p>
+        <p><strong>Company:</strong> {{company}}</p>
+        <p><strong>Service of Interest:</strong> {{service}}</p>
+        <p><strong>Message:</strong><br>{{message}}</p>
+      </div>
+      <hr style='margin:30px 0; border:none; border-top:1px solid #ddd;'>
+      <div style='text-align:center; font-size:12px; color:#999;'>
+        <p>Sent from <strong>YourWebsite.com</strong></p>
+        <p>Need help? Contact us at support@yourwebsite.com</p>
+      </div>
+    </div>
+  ">
+
+  <!-- Visible Form Fields -->
+  <div>
     <label for="name">Full name</label>
     <input id="name" name="name" type="text" placeholder="Full name" required>
   </div>
   <div>
     <label for="email">Work email</label>
-    <input id="email" name="email" type="email" placeholder="[email protected]" required>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required>
   </div>
   <div>
     <label for="company">Company</label>
@@ -1122,10 +1152,11 @@
   </div>
   <div>
     <label for="message">What can we take off your plate?</label>
-    <textarea id="message" name="message" placeholder="Describe your needs…"></textarea>
+    <textarea id="message" name="message" placeholder="Describe your needs…" rows="4"></textarea>
   </div>
   <button class="btn btn-primary" type="submit">Submit Request</button>
 </form>
+
 
 
         <div class="card" role="contentinfo">
