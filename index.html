@@ -1075,6 +1075,10 @@
         <h2>Get Service Quote</h2>
         <span class="sub">Tell us what you need help with. We’ll reply promptly.</span>
       </div>
+	  <div id="splash-message" style="display:none; position:fixed; top:0; left:0; width:100%; background:rgba(0,123,255,0.85); color:white; text-align:center; padding:1rem; font-weight:bold; z-index:9999;">
+  RemoteFlow Has Received Your Request
+</div>
+
       <div class="grid" style="grid-template-columns:1.1fr .9fr">
         <form aria-label="Contact form" onsubmit="event.preventDefault(); alert('Request Submitted Successfully.');">
   <div>
@@ -1264,10 +1268,41 @@
 
 setInterval(updateClocks, 1000);
 updateClocks();
+document.querySelector("form").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
+  const form = e.target;
+  if (!form.checkValidity()) return;
+
+  // Show splash
+  const splash = document.getElementById("splash-message");
+  splash.style.display = "block";
+
+  setTimeout(() => {
+    splash.style.display = "none";
+    submitFormData(form);
+  }, 3000);
+});
+
+async function submitFormData(form) {
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    company: form.company.value,
+    service: form.service.value,
+    message: form.message.value
+  };
+
+  // Send to backend (see next section)
+  await fetch("/submit-request", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+}
+</script>
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
